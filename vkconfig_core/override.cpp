@@ -104,7 +104,7 @@ static bool WriteLayerOverride(const PathManager& path, const std::vector<Applic
     }
 
     QJsonObject root;
-    root.insert("file_format_version", QJsonValue("1.1.2"));
+    root.insert("file_format_version", "1.1.2");
     root.insert("layer", layer);
     QJsonDocument doc(root);
 
@@ -157,9 +157,9 @@ static bool WriteLayerSettings(const PathManager& path, const std::vector<Layer>
 
             if (layer->name == "lunarg_gfxreconstruct" && layer->_api_version < Version("1.2.148")) {
                 stream << "lunarg_gfxrecon"
-                       << "." << setting.key << " = " << setting.value << "\n";
+                       << "." << setting.key << " = " << setting.default_value << "\n";
             } else {
-                stream << lc_layer_name << "." << setting.key << " = " << setting.value << "\n";
+                stream << lc_layer_name << "." << setting.key << " = " << setting.default_value << "\n";
             }
         }
     }
